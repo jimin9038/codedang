@@ -13,7 +13,7 @@ interface NoticeProps {
 }
 
 const getFixedNotices = async () => {
-  const res: NoticeProps = await fetcher
+  const notices: NoticeProps = await fetcher
     .get('notice', {
       searchParams: {
         fixed: 'true',
@@ -21,12 +21,12 @@ const getFixedNotices = async () => {
       }
     })
     .json()
-  res.data ?? console.error(res)
-  return res.data ?? res
+  console.error('1. getFixedNotices', notices)
+  return notices.data
 }
 
 const getNotices = async (search: string) => {
-  const res: NoticeProps = await fetcher
+  const notices: NoticeProps = await fetcher
     .get('notice', {
       searchParams: {
         search,
@@ -34,8 +34,8 @@ const getNotices = async (search: string) => {
       }
     })
     .json()
-  res.data ?? console.error(res)
-  return res.data ?? res
+  console.error('2. getNotices', notices)
+  return notices.data
 }
 
 export default async function NoticeTable({ search }: Props) {
@@ -49,6 +49,7 @@ export default async function NoticeTable({ search }: Props) {
     noticesFetcher
   ])
 
+  console.error('3. try concat', fixedNotices, notices)
   const currentPageData = fixedNotices.concat(notices)
 
   return (
