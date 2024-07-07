@@ -19,8 +19,8 @@ const getProblems = async () => {
     })
     .json()
 
-  res.data ?? console.error(res)
-  return res.data ?? res
+  res.data ?? console.error('4.getProblem', res)
+  return res.data
 }
 
 export default async function ProblemCards() {
