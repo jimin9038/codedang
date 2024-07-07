@@ -21,7 +21,7 @@ const getFixedNotices = async () => {
       }
     })
     .json()
-
+  console.error('1. getFixedNotices', notices)
   return notices.data
 }
 
@@ -34,7 +34,7 @@ const getNotices = async (search: string) => {
       }
     })
     .json()
-
+  console.error('2. getNotices', notices)
   return notices.data
 }
 
@@ -49,8 +49,7 @@ export default async function NoticeTable({ search }: Props) {
     noticesFetcher
   ])
 
-  fixedNotices == undefined ? [] : fixedNotices
-
+  console.error('3. try concat', fixedNotices, notices)
   const currentPageData = fixedNotices.concat(notices)
 
   return (
